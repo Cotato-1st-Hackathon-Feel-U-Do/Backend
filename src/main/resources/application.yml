@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+    datasource:
+      url: ENC(YfGLKrWhv2goKQIkKZvkAilJUT4f4Ew2U0E2h0+t5Kt9amhLEg9LMtY4G6XwiUbgy8rldpuikNSbwpmjKTa/7asz3GYvATOSlj9wHgW3XDYRysyrWki/6QfWgGL7pTI4e5S7T/HvV4ZkkBXWyvBFxun6Bf+6ztWKz8bIENDN9T+a3LSb9Pa6rA==)
+      username: ENC(QB0EgHNHsSj3AGnX4yKNwg==)
+      password: ENC(MAxJOCluYJ84gtumbPB7WLLTS9gfhueT)
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: create #create -> update
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql:true
+
+#  servlet:
+#    multipart:
+#      max-file-size: 10MB
+#      max-request-size: 10MB
+#
+#  mvc:
+#    path match:
+#      matching-strategy: ant_path_matcher
+#    format:
+#      date-time: yyyy-MM-dd HH:mm:ss
+
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    property:
+      prefix: ENC(
+      suffix: )
