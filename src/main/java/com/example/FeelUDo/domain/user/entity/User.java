@@ -1,29 +1,38 @@
 package com.example.FeelUDo.domain.user.entity;
 
-import com.example.FeelUDo.global.entity.BaseTimeEntity;
+import com.example.FeelUDo.domain.job.entity.JobType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
-@Getter
-public class User extends BaseTimeEntity {
+public class User {
 
     @Id
-    @Column(name = "user_index")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userIndex;
+    @Column(name = "user_index")
+    private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private String userId;
+    private String email;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    private String nickname;
 
-    @Column(name = "nickName", nullable = false)
-    private String nickName;
+    private OAuthProvider oAuthProvider;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<JobType> jobTypeList = new ArrayList<>();
+
+    @Builder
+    public User(String email, String nickname, OAuthProvider oAuthProvider) {
+        this.email = email;
+        this.nickname = nickname;
+        this.oAuthProvider = oAuthProvider;
+    }
 
 }

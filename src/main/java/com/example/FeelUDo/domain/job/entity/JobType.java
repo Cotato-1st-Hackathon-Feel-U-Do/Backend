@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+
 @Builder
 public class JobType extends BaseTimeEntity {
 
@@ -27,8 +28,8 @@ public class JobType extends BaseTimeEntity {
     private Long joinAge;
 
     // user : job => 1 : N
-    @ManyToOne()
     @JoinColumn(name = "user_index")
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
 }

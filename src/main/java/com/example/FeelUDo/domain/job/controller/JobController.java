@@ -14,24 +14,33 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/sd")
 @RequiredArgsConstructor
-
 public class JobController {
 
     private final JobInfoService jobInfoService;
 
     private final AuthTokensGenerator authTokensGenerator;
 
-    // 일자리 리스트 다 보여주기 - cred
-    /*@GetMapping("/{jobIndex}")
-    @Operation(summary = "(Get) 일자리 리스트", description = "테스트 용 API 입니다. ")
-    public ApplicationResponse<List<GetJobInfoRes>> readJobInfo(@PathVariable Long userIndex) {
-        return ApplicationResponse.ok(JobInfoService.readJobInfo(userIndex));
+    @GetMapping("")
+    @Operation(summary = "(Get) 일자리 리스트", description = "일자리 리스트 보여주는 API 입니다.")
+    public ApplicationResponse<List<GetJobInfoRes>> readJobInfo() {
+        Long userIndex = authTokensGenerator.getAccessToken();
+        return ApplicationResponse.ok(jobInfoService.readJobInfo(userIndex));
     }
 
     @PostMapping("/{jobIndex}")
-    @Operation(summary = "(Get) 직업 리스트", description = "테스트 용 API 입니다. ")
-    public ApplicationResponse<?> createJobInfo(@PathVariable Long userIndex,
-                                                 @RequestBody PostJobInfoReq postJobInfoReq) {
-        return ApplicationResponse.ok(JobInfoService.createJobInfo(userIndex, postJobInfoReq));
-    }*/
+    @Operation(summary = "(Get) 직업 리스트")
+    public ApplicationResponse<?> createJobInfo(@PathVariable Long jobIndex,
+                                                @RequestBody PostJobInfoReq postJobInfoReq) {
+        Long userIndex = authTokensGenerator.getAccessToken();
+        return ApplicationResponse.ok(jobInfoService.createJobInfo(jobIndex, postJobInfoReq));
+    }
+
+    // 직업 상세 보기
+
+    // post - 직업 정보 추가
+
+    // put - 직업 정보 수정
+
+    //
+
 }

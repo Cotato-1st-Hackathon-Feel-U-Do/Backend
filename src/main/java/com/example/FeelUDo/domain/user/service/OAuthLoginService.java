@@ -2,18 +2,18 @@ package com.example.FeelUDo.domain.user.service;
 
 import com.example.FeelUDo.domain.user.client.OAuthApiClient;
 import com.example.FeelUDo.domain.user.dto.OAuthInfoResponse;
-import com.example.FeelUDo.domain.user.entity.Member;
+import com.example.FeelUDo.domain.user.entity.User;
 import com.example.FeelUDo.domain.user.jwt.AuthTokens;
 import com.example.FeelUDo.domain.user.jwt.AuthTokensGenerator;
 import com.example.FeelUDo.domain.user.dto.params.OAuthLoginParams;
-import com.example.FeelUDo.domain.user.repsitory.MemberRepository;
+import com.example.FeelUDo.domain.user.repsitory.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class OAuthLoginService {
-    private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
 
     private final AuthTokensGenerator authTokensGenerator;
     private final RequestOAuthInfoService requestOAuthInfoService;
@@ -36,8 +36,8 @@ public class OAuthLoginService {
     }
 
     private Long findOrCreateMember(OAuthInfoResponse oAuthInfoResponse) {
-        return memberRepository.findByEmail(oAuthInfoResponse.getEmail())
-                .map(Member::getId)
+        return userRepository.findByEmail(oAuthInfoResponse.getEmail())
+                .map(User::getId)
                 .orElseGet(() -> newMember(oAuthInfoResponse));
     }
 
@@ -45,13 +45,13 @@ public class OAuthLoginService {
      * 유저가 없으면 새로 생성해주는
      * */
     private Long newMember(OAuthInfoResponse oAuthInfoResponse) {
-        Member member = Member.builder()
+        User member = User.builder()
                 .email(oAuthInfoResponse.getEmail())
                 .nickname(oAuthInfoResponse.getNickname())
                 .oAuthProvider(oAuthInfoResponse.getOAuthProvider())
                 .build();
 
-        return memberRepository.save(member).getId();
+        return userRepository.save(member).getId();
     }
 
 }
