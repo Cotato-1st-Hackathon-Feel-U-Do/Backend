@@ -1,5 +1,6 @@
 package com.example.FeelUDo.domain.sideDish.service;
 
+import com.example.FeelUDo.domain.sideDish.dto.GetSideDishDetails;
 import com.example.FeelUDo.domain.sideDish.dto.GetSideDishRes;
 import com.example.FeelUDo.domain.sideDish.dto.PostSideDishReq;
 import com.example.FeelUDo.domain.sideDish.entity.SideDish;
@@ -13,11 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class SbServiceImpl implements SdService{
+public class SdServiceImpl implements SdService{
 
     private final SideDishRepository sideDishRepository;
     private final TagRepository tagRepository;
@@ -68,4 +70,12 @@ public class SbServiceImpl implements SdService{
         return "생셩되었습니다.";
     }
 
+    @Override
+    @Transactional
+    public GetSideDishDetails readSideDishDetails(Long sideDishIndex) {
+        Optional<SideDish> sideDish = sideDishRepository.findById(sideDishIndex);
+        GetSideDishDetails getSideDishDetails = new GetSideDishDetails(sideDish);
+
+        return getSideDishDetails;
+    }
 }
