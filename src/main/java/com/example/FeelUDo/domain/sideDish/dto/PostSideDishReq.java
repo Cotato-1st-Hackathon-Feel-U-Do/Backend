@@ -1,14 +1,13 @@
 package com.example.FeelUDo.domain.sideDish.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class PostSideDishReq {
     @Schema(description = "반찬 이름", defaultValue = "1")
     private String name;
@@ -16,9 +15,9 @@ public class PostSideDishReq {
     private Long price;
     @Schema(description = "반찬 사진")
     private String photoUrl;
-    @Schema(description = "반찬 사진")
+    @Schema(description = "판매자 번호")
     private String contact;
-    @Schema(description = "반찬 사진")
+    @Schema(description = "판매 위치")
     private String location;
 
     // 태그 목록

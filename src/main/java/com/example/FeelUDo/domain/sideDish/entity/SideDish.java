@@ -38,11 +38,12 @@ public class SideDish extends BaseTimeEntity{
     private String location;
 
     @Builder
-    public SideDish(Long userIndex, String dishName, Long price, String photoUrl, String location) {
+    public SideDish(Long userIndex, String dishName, Long price, String photoUrl, String contact,String location) {
         this.userIndex = userIndex;
         this.dishName = dishName;
         this.price = price;
         this.photoUrl = photoUrl;
+        this.contact=contact;
         this.location = location;
     }
 

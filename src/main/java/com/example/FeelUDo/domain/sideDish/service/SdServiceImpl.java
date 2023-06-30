@@ -1,6 +1,7 @@
 package com.example.FeelUDo.domain.sideDish.service;
 
-import com.example.FeelUDo.domain.sideDish.dto.GetSideDishDetails;
+import com.example.FeelUDo.domain.sideDish.dto.BuySideDishRes;
+import com.example.FeelUDo.domain.sideDish.dto.GetSideDishDetailsRes;
 import com.example.FeelUDo.domain.sideDish.dto.GetSideDishRes;
 import com.example.FeelUDo.domain.sideDish.dto.PostSideDishReq;
 import com.example.FeelUDo.domain.sideDish.entity.SideDish;
@@ -26,7 +27,8 @@ public class SdServiceImpl implements SdService{
 
 
     @Override
-    public List<GetSideDishRes> readSideDish(Long userIndex) {
+    @Transactional
+    public List<GetSideDishRes> readSideDish() {
 
         List<SideDish> sideDishList = sideDishRepository.findAll();
         List<GetSideDishRes> getSideDishResList = new ArrayList<>();
@@ -36,8 +38,8 @@ public class SdServiceImpl implements SdService{
             GetSideDishRes getSideDishRes = GetSideDishRes.builder()
                     .sideDishIndex(sideDish.getSideDishIndex())
                     .name(sideDish.getDishName())
-                    .sideDishIndex(sideDish.getPrice())
-                    .sideDishIndex(sideDish.getPrice())
+                    .price(sideDish.getPrice())
+                    .photo(sideDish.getPhotoUrl())
                     .build();
             getSideDishResList.add(getSideDishRes);
         }
@@ -54,6 +56,7 @@ public class SdServiceImpl implements SdService{
                 .dishName(postSideDishReq.getName())
                 .price(postSideDishReq.getPrice())
                 .photoUrl(postSideDishReq.getPhotoUrl())
+                .contact(postSideDishReq.getContact())
                 .location(postSideDishReq.getLocation())
                 .build();
 
@@ -70,12 +73,23 @@ public class SdServiceImpl implements SdService{
         return "생셩되었습니다.";
     }
 
+    
+    //반찬 정보 가져오기
     @Override
     @Transactional
-    public GetSideDishDetails readSideDishDetails(Long sideDishIndex) {
+    public GetSideDishDetailsRes readSideDishDetails(Long sideDishIndex) {
         Optional<SideDish> sideDish = sideDishRepository.findById(sideDishIndex);
-        GetSideDishDetails getSideDishDetails = new GetSideDishDetails(sideDish);
+        GetSideDishDetailsRes getSideDishDetailsRes = new GetSideDishDetailsRes(sideDish);
 
-        return getSideDishDetails;
+        return getSideDishDetailsRes;
+    }
+
+    @Override
+    @Transactional
+    public BuySideDishRes buySideDish(Long sideDishIndex) {
+        Optional<SideDish> sideDish = sideDishRepository.findById(sideDishIndex);
+        String contact = sideDish.get().getContact();
+        BuySideDishRes buySideDishRes = new BuySideDishRes(contact);
+        return buySideDishRes;
     }
 }
