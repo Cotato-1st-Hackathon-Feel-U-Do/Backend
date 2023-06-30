@@ -23,7 +23,7 @@ public class SideDish extends BaseTimeEntity{
     private Long sideDishIndex;
 
     @Column(name = "user_index",nullable = false)
-    private Long userIndex;
+    private Long userIndex;  // 판매자
 
     @Column(name = "dish_name",nullable = false)
     private String dishName;
@@ -37,7 +37,13 @@ public class SideDish extends BaseTimeEntity{
     @Column(name = "location",nullable = false)
     private String location;
 
-
-
+    @Builder
+    public SideDish(Long userIndex, String dishName, Long price, String photoUrl, String location) {
+        this.userIndex = userIndex;
+        this.dishName = dishName;
+        this.price = price;
+        this.photoUrl = photoUrl;
+        this.location = location;
+    }
 
 }
