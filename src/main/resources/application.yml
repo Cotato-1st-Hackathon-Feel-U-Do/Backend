@@ -15,6 +15,15 @@ spring:
       properties:
         hibernate:
           format_sql:true
+jwt:
+  secret-key: Z29nby10bS1zZXJ2ZXItZGxyamVvYW9yb3JodG9kZ290c3Atam9vbmdhbmduaW0teWVvbHNpbWhpaGFsZ2VveW8K
+
+oauth:
+  kakao:
+    client-id: ECN(fFFZbA8Kl49ywzY8+NF20JQIe9B2+cntEtWnrPB6tiy67J8GGcjyv5mShUSi0nH6)
+    url:
+      auth: https://kauth.kakao.com
+      api: https://kapi.kakao.com
 
 cloud:
   aws:
