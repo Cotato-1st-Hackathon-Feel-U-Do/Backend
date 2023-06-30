@@ -25,9 +25,6 @@ public class User {
 
     private OAuthProvider oAuthProvider;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<JobType> jobTypeList = new ArrayList<>();
-
     @Builder
     public User(String email, String nickname, OAuthProvider oAuthProvider) {
         this.email = email;
