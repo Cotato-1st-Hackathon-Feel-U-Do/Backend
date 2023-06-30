@@ -22,7 +22,7 @@ public class SdController {
     private final AuthTokensGenerator authTokensGenerator;
 
     // 반찬 리스트 다 보여주기 - cred
-    @GetMapping("/")
+    @GetMapping("/{userIndex}")
     @Operation(summary = "(Get) 반찬 리스트", description = "테스트 용 API 입니다. ")
     public ApplicationResponse<List<GetSideDishRes>> readSideDish(@PathVariable Long userIndex) {
         Long userId = authTokensGenerator.getAccessToken();
