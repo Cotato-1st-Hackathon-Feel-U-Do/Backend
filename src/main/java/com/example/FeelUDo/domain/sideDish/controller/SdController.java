@@ -1,7 +1,9 @@
 package com.example.FeelUDo.domain.sideDish.controller;
 
+import com.example.FeelUDo.domain.sideDish.dto.GetSideDishDetails;
 import com.example.FeelUDo.domain.sideDish.dto.GetSideDishRes;
 import com.example.FeelUDo.domain.sideDish.dto.PostSideDishReq;
+import com.example.FeelUDo.domain.sideDish.entity.SideDish;
 import com.example.FeelUDo.domain.sideDish.service.SdService;
 import com.example.FeelUDo.global.dto.ApplicationResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,5 +32,12 @@ public class SdController {
     public ApplicationResponse<?> createSideDish(@PathVariable Long userIndex,
                                                  @RequestBody PostSideDishReq postSideDishReq) {
         return ApplicationResponse.ok(sdService.createSideDish(userIndex, postSideDishReq));
+    }
+
+    //반찬 상세 페이지 : 일반 사용자가 보는것?
+    @GetMapping("/details/{sideDishIndex}")
+    @Operation(summary = "(Get) 반찬 상세 리스트",description = "테스트 용 API 입니다.")
+    public ApplicationResponse<GetSideDishDetails> readDetailSideDish(@PathVariable Long sideDishIndex){
+        return ApplicationResponse.ok(sdService.readSideDishDetails(sideDishIndex));
     }
 }
