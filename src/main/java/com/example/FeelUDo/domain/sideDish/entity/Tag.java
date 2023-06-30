@@ -3,6 +3,7 @@ package com.example.FeelUDo.domain.sideDish.entity;
 import com.example.FeelUDo.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,16 @@ public class Tag extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    @Builder
+    public Tag(SideDish sideDish, String content) {
+        this.sideDish = sideDish;
+        this.content = content;
+    }
+
+    public static Tag of(SideDish sideDish, String content){
+        return Tag.builder()
+                .sideDish(sideDish)
+                .content(content)
+                .build();
+    }
 }
