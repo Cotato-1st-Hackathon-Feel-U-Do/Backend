@@ -3,6 +3,7 @@ package com.example.FeelUDo.domain.job.entity;
 import com.example.FeelUDo.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -33,6 +34,14 @@ public class JobInfo extends BaseTimeEntity {
     @Column(name = "special_condition",nullable = false)
     private String specialCondition;
 
+    @Builder
+    public JobInfo(JobType jobType, String jobInfoName, Long qualifiedAge, String details, String specialCondition) {
+        this.jobType = jobType;
+        this.jobInfoName = jobInfoName;
+        this.qualifiedAge = qualifiedAge;
+        this.details = details;
+        this.specialCondition = specialCondition;
+    }
 
 
 }
