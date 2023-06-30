@@ -11,7 +11,7 @@ import java.util.Optional;
 @Getter
 @AllArgsConstructor
 @Builder
-public class GetSideDishDetails {
+public class GetSideDishDetailsRes {
 
     @Schema(description = "반찬 인덱스",defaultValue = "1")
     private Long sideDishIndex;
@@ -23,7 +23,7 @@ public class GetSideDishDetails {
     @Schema(description = "반찬 사진")
     private String photo;
 
-    public GetSideDishDetails(Optional<SideDish> sideDish) {
+    public GetSideDishDetailsRes(Optional<SideDish> sideDish) {
         this.sideDishIndex = sideDish.get().getSideDishIndex();
         this.name = sideDish.get().getDishName();
         this.price = sideDish.get().getPrice();
