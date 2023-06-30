@@ -20,7 +20,7 @@ jwt:
 
 oauth:
   kakao:
-    client-id: ECN(fFFZbA8Kl49ywzY8+NF20JQIe9B2+cntEtWnrPB6tiy67J8GGcjyv5mShUSi0nH6)
+    client-id: ENC(fFFZbA8Kl49ywzY8+NF20JQIe9B2+cntEtWnrPB6tiy67J8GGcjyv5mShUSi0nH6)
     url:
       auth: https://kauth.kakao.com
       api: https://kapi.kakao.com
@@ -37,18 +37,17 @@ cloud:
     stack:
       auto: false
 
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
 
 #  servlet:
 #    multipart:
 #      max-file-size: 10MB
 #      max-request-size: 10MB
 #
-#  mvc:
-#    path match:
-#      matching-strategy: ant_path_matcher
-#    format:
-#      date-time: yyyy-MM-dd HH:mm:ss
-
 
 jasypt:
   encryptor:
