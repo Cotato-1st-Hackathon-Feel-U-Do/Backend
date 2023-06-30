@@ -3,6 +3,7 @@ package com.example.FeelUDo.domain.job.controller;
 import com.example.FeelUDo.domain.job.dto.GetJobInfoRes;
 import com.example.FeelUDo.domain.job.dto.PostJobInfoReq;
 import com.example.FeelUDo.domain.job.service.JobInfoService;
+import com.example.FeelUDo.domain.user.jwt.AuthTokensGenerator;
 import com.example.FeelUDo.global.dto.ApplicationResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,8 @@ import java.util.List;
 public class JobController {
 
     private final JobInfoService jobInfoService;
+
+    private final AuthTokensGenerator authTokensGenerator;
 
     // 일자리 리스트 다 보여주기 - cred
     /*@GetMapping("/{jobIndex}")

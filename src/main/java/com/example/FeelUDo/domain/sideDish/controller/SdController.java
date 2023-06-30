@@ -5,6 +5,7 @@ import com.example.FeelUDo.domain.sideDish.dto.GetSideDishDetailsRes;
 import com.example.FeelUDo.domain.sideDish.dto.GetSideDishRes;
 import com.example.FeelUDo.domain.sideDish.dto.PostSideDishReq;
 import com.example.FeelUDo.domain.sideDish.service.SdService;
+import com.example.FeelUDo.domain.user.jwt.AuthTokensGenerator;
 import com.example.FeelUDo.global.dto.ApplicationResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +19,13 @@ import java.util.List;
 public class SdController {
 
     private final SdService sdService;
+    private final AuthTokensGenerator authTokensGenerator;
 
     // 반찬 리스트 다 보여주기 - cred
     @GetMapping("/")
     @Operation(summary = "(Get) 반찬 리스트", description = "테스트 용 API 입니다. ")
     public ApplicationResponse<List<GetSideDishRes>> readSideDish(@PathVariable Long userIndex) {
+        Long userId = authTokensGenerator.getAccessToken();
         return ApplicationResponse.ok(sdService.readSideDish());
     }
 
@@ -46,4 +49,5 @@ public class SdController {
     public ApplicationResponse<BuySideDishRes> buySideDish(@PathVariable Long sideDishIndex){
         return ApplicationResponse.ok(sdService.buySideDish(sideDishIndex));
     }
+
 }
