@@ -30,14 +30,12 @@ public class SideDish extends BaseTimeEntity{
 
     @Column(name = "price",nullable = false)
     private Long price;
-    @Column(columnDefinition = "TEXT",name = "photo_urlfix",nullable = false)
+    @Column(columnDefinition = "TEXT",name = "photo",nullable = false)
     private String photoUrl;
     @Column(name = "contact",nullable = false)
     private String contact;
     @Column(name = "location",nullable = false)
     private String location;
-
-
 
 
 }
