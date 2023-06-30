@@ -28,7 +28,7 @@ public class SdServiceImpl implements SdService{
 
     @Override
     @Transactional
-    public List<GetSideDishRes> readSideDish() {
+    public List<GetSideDishRes> readSideDish(Long userIndex) {
 
         List<SideDish> sideDishList = sideDishRepository.findAll();
         List<GetSideDishRes> getSideDishResList = new ArrayList<>();
