@@ -8,7 +8,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-
 public class GetJobInfoRes {
     @Schema(description = "일자리 인덱스", defaultValue = "1")
     private Long jobIndex;

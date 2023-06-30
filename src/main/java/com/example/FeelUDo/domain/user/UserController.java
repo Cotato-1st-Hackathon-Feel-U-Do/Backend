@@ -1,6 +1,5 @@
 package com.example.FeelUDo.domain.user;
 
-import com.example.FeelUDo.domain.user.entity.Member;
 import com.example.FeelUDo.domain.user.jwt.AuthTokens;
 import com.example.FeelUDo.domain.user.dto.params.KakaoLoginParams;
 import com.example.FeelUDo.domain.user.jwt.AuthTokensGenerator;

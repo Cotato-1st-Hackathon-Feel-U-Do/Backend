@@ -18,8 +18,8 @@ public class JobInfo extends BaseTimeEntity {
     @Column(name = "job_info_index")
     private Long jobInfoIndex;
 
-    @JoinColumn(name = "job_index",nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "job_index")
     private JobType jobType;
 
     @Column(name = "job_info_name",nullable = false)
@@ -42,6 +42,5 @@ public class JobInfo extends BaseTimeEntity {
         this.details = details;
         this.specialCondition = specialCondition;
     }
-
 
 }
